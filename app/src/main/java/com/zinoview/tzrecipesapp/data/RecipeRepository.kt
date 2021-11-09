@@ -12,6 +12,8 @@ interface RecipeRepository {
 
     suspend fun recipes() : Flow<DataRecipes>
 
+    suspend fun similarRecipes(id: String) : Flow<DataRecipes>
+
     class Base (
         private val cloudDataSource: CloudDataSource,
         private val dataRecipeMapper: DataRecipeMapper,
@@ -23,6 +25,18 @@ interface RecipeRepository {
             return try {
                 val cloudRecipes = cloudDataSource.recipes()
                 val dataRecipes = cloudRecipes.map { cloudRecipe -> cloudRecipe.map(dataRecipeMapper)  }
+                flow { emit(DataRecipes.Success(dataRecipes)) }
+            } catch (e: Exception) {
+                val errorMessage = exceptionMapper.map(e)
+                flow { emit(DataRecipes.Failure(errorMessage)) }
+            }
+        }
+
+        override suspend fun similarRecipes(id: String): Flow<DataRecipes> {
+            delay(DELAY.toLong())
+            return try {
+                val similarCloudRecipes = cloudDataSource.similarRecipes(id)
+                val dataRecipes = similarCloudRecipes.map { cloudRecipe -> cloudRecipe.map(dataRecipeMapper)  }
                 flow { emit(DataRecipes.Success(dataRecipes)) }
             } catch (e: Exception) {
                 val errorMessage = exceptionMapper.map(e)
@@ -51,6 +65,9 @@ interface RecipeRepository {
             count++
             return result
         }
+
+        override suspend fun similarRecipes(id: String): Flow<DataRecipes>
+            = flow {  }
 
     }
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import com.zinoview.tzrecipesapp.data.DataRecipeMapper
 import com.zinoview.tzrecipesapp.data.ExceptionMapper
 import com.zinoview.tzrecipesapp.data.RecipeRepository
+import com.zinoview.tzrecipesapp.data.TextEditor
 import com.zinoview.tzrecipesapp.data.cloud.CloudDataSource
 import com.zinoview.tzrecipesapp.data.cloud.RecipeApiService
 import com.zinoview.tzrecipesapp.domain.DomainRecipeMapper
@@ -64,7 +65,9 @@ class RecipeApplication : Application() {
                 UiRecipeMapper.Base()
             ),
             UiRecipesStateMapper.Base(
-                UiRecipeStateMapper.Base()
+                UiRecipeStateMapper.Base(
+                    TextEditor.Base()
+                )
             ),
             UiRecipeStateCommunication.Base()
         )

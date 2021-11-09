@@ -18,6 +18,8 @@ interface RecipeViewModel : Observe<List<UiRecipeState>> {
 
     fun recipes()
 
+    fun similarRecipes(id: String)
+
     class Base (
         private val interactor: RecipeInteractor,
         private val uiRecipeMapper: UiRecipesMapper,
@@ -30,6 +32,21 @@ interface RecipeViewModel : Observe<List<UiRecipeState>> {
             recipeCommunication.postValue(listOf(UiRecipeState.Progress))
             viewModelScope.launch(defaultDispatcher) {
                 val domainRecipes = interactor.recipes()
+                val uiRecipes = domainRecipes.map { domain -> domain.map(uiRecipeMapper) }
+                val uiStateRecipes = uiRecipes.map { ui -> ui.map(uiRecipesStateMapper) }
+
+                withContext(Dispatchers.Main) {
+                    uiStateRecipes.collect { uiRecipesState ->
+                        recipeCommunication.postValue(uiRecipesState)
+                    }
+                }
+            }
+        }
+
+        override fun similarRecipes(id: String) {
+            recipeCommunication.postValue(listOf(UiRecipeState.Progress))
+            viewModelScope.launch(defaultDispatcher) {
+                val domainRecipes = interactor.similarRecipes(id)
                 val uiRecipes = domainRecipes.map { domain -> domain.map(uiRecipeMapper) }
                 val uiStateRecipes = uiRecipes.map { ui -> ui.map(uiRecipesStateMapper) }
 

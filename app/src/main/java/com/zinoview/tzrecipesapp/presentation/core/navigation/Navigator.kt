@@ -1,5 +1,6 @@
 package com.zinoview.tzrecipesapp.presentation.core.navigation
 
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.zinoview.tzrecipesapp.R
 import com.zinoview.tzrecipesapp.presentation.core.BaseFragment

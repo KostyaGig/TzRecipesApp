@@ -6,7 +6,7 @@ import android.util.Log
 import com.zinoview.tzrecipesapp.R
 import com.zinoview.tzrecipesapp.presentation.core.navigation.Exit
 import com.zinoview.tzrecipesapp.presentation.core.navigation.Navigator
-import com.zinoview.tzrecipesapp.presentation.fragment.RecipesFragment
+import com.zinoview.tzrecipesapp.presentation.features.ra01.RecipesFragment
 
 //todo remove later
 fun Any?.log(text: String) {
@@ -26,4 +26,9 @@ class MainActivity : AppCompatActivity(), Exit {
     }
 
     override fun exit() = finish()
+
+    override fun onBackPressed() {
+        val baseFragment = supportFragmentManager.fragments[0] as BaseFragment
+        baseFragment.navigateToBack()
+    }
 }

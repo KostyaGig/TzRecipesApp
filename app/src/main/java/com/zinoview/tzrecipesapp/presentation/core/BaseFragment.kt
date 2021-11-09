@@ -9,5 +9,9 @@ abstract class BaseFragment(@LayoutRes layoutResId: Int) : Fragment(layoutResId)
         (requireActivity() as MainActivity).navigator
     }
 
+    protected companion object {
+        const val DETAIL_RECIPE_ID_KEY = "id_det"
+    }
+
     abstract fun navigateToBack()
 }

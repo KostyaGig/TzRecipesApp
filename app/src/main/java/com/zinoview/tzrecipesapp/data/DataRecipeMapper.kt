@@ -4,7 +4,7 @@ import com.zinoview.tzrecipesapp.core.Abstract
 
 interface DataRecipeMapper : Abstract.RecipeMapper<DataRecipe> {
 
-    class Base : DataRecipeMapper {
+    class Base: DataRecipeMapper {
         override fun map(
             id: String,
             title: String,

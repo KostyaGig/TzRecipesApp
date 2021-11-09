@@ -1,8 +1,11 @@
 package com.zinoview.tzrecipesapp.data.cloud
 
+
 interface CloudDataSource {
 
     suspend fun recipes() : List<CloudRecipe>
+
+    suspend fun similarRecipes(id: String) : List<CloudRecipe>
 
     class Base(
         private val recipeApiService: RecipeApiService
@@ -10,6 +13,10 @@ interface CloudDataSource {
 
         override suspend fun recipes(): List<CloudRecipe>
             =  recipeApiService.recipes().models()
+
+        override suspend fun similarRecipes(id: String): List<CloudRecipe> {
+            return recipeApiService.recipe(id).toCloudRecipe()
+        }
     }
 
     class Test : CloudDataSource {
@@ -20,6 +27,9 @@ interface CloudDataSource {
                 CloudRecipe.TestRecipe("2","Burger")
             )
         }
+
+        override suspend fun similarRecipes(id: String): List<CloudRecipe.Base>
+            = emptyList()
 
     }
 }

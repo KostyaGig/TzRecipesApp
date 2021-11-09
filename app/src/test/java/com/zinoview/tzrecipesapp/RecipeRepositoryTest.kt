@@ -1,6 +1,7 @@
-package com.zinoview.tzrecipesapp.data
+package com.zinoview.tzrecipesapp
 
-import com.zinoview.tzrecipesapp.core.Abstract
+import com.zinoview.tzrecipesapp.data.DataRecipes
+import com.zinoview.tzrecipesapp.data.RecipeRepository
 import com.zinoview.tzrecipesapp.data.cloud.CloudDataSource
 import com.zinoview.tzrecipesapp.data.cloud.CloudRecipe
 import kotlinx.coroutines.flow.first
@@ -30,8 +31,8 @@ class RecipeRepositoryTest {
         val expected = flow { emit(
             DataRecipes.Test(
                 listOf(
-                    CloudRecipe.TestRecipe("1","Pizza"),
-                    CloudRecipe.TestRecipe("2","Burger")
+                    CloudRecipe.TestRecipe("1", "Pizza"),
+                    CloudRecipe.TestRecipe("2", "Burger")
                 )
             )
         )}.first()

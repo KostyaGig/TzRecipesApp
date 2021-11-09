@@ -1,5 +1,6 @@
-package com.zinoview.tzrecipesapp.data
+package com.zinoview.tzrecipesapp
 
+import com.zinoview.tzrecipesapp.data.DataRecipe
 import com.zinoview.tzrecipesapp.domain.DomainRecipe
 import com.zinoview.tzrecipesapp.domain.DomainRecipeMapper
 import org.junit.Assert.*
@@ -13,7 +14,7 @@ class TestRecipeMapper {
 
     @Test
     fun test_data_to_domain_map() {
-        val dataRecipe = DataRecipe.Base("1","Pizza","","","",0)
+        val dataRecipe = DataRecipe.Base("1", "Pizza", "", "", "", 0)
 
         val expected = DomainRecipe.Base("1","Pizza","","","",0)
         val actual = dataRecipe.map(DomainRecipeMapper.Base())

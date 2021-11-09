@@ -1,6 +1,6 @@
-package com.zinoview.tzrecipesapp.data
+package com.zinoview.tzrecipesapp
 
-import okhttp3.ResponseBody
+import com.zinoview.tzrecipesapp.data.ExceptionMapper
 import org.junit.Assert.*
 import org.junit.Test
 import retrofit2.HttpException

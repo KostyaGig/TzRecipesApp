@@ -18,7 +18,7 @@ interface RecipeViewModel : Observe<List<UiRecipeState>> {
 
     fun recipes()
 
-    class Base(
+    class Base (
         private val interactor: RecipeInteractor,
         private val uiRecipeMapper: UiRecipesMapper,
         private val uiRecipesStateMapper: UiRecipesStateMapper,
@@ -43,6 +43,5 @@ interface RecipeViewModel : Observe<List<UiRecipeState>> {
 
         override fun observe(owner: LifecycleOwner, observer: Observer<List<UiRecipeState>>)
             = recipeCommunication.observe(owner,observer)
-
     }
 }

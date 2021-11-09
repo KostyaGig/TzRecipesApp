@@ -8,7 +8,7 @@ interface RecipeInteractor {
 
     suspend fun recipes() : Flow<DomainRecipes>
 
-    class Base(
+    class Base (
         private val repository: RecipeRepository,
         private val domainRecipesMapper: DomainRecipesMapper
     ) : RecipeInteractor {

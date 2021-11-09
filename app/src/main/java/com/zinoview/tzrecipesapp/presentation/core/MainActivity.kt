@@ -15,7 +15,6 @@ fun Any?.log(text: String) {
 
 class MainActivity : AppCompatActivity(), Exit {
 
-
     var navigator: Navigator = Navigator.Empty()
 
     override fun onCreate(savedInstanceState: Bundle?) {

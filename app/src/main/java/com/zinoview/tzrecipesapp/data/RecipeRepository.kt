@@ -1,7 +1,6 @@
 package com.zinoview.tzrecipesapp.data
 
 import com.zinoview.tzrecipesapp.data.cloud.CloudDataSource
-import com.zinoview.tzrecipesapp.presentation.core.log
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -13,7 +12,7 @@ interface RecipeRepository {
 
     suspend fun recipes() : Flow<DataRecipes>
 
-    class Base(
+    class Base (
         private val cloudDataSource: CloudDataSource,
         private val dataRecipeMapper: DataRecipeMapper,
         private val exceptionMapper: ExceptionMapper

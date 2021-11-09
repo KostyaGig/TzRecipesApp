@@ -7,18 +7,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zinoview.tzrecipesapp.R
-import com.zinoview.tzrecipesapp.core.RecipeApplication
 import com.zinoview.tzrecipesapp.presentation.BundleRecipe
 import com.zinoview.tzrecipesapp.presentation.core.BaseFragment
-import com.zinoview.tzrecipesapp.presentation.core.MainActivity
 import com.zinoview.tzrecipesapp.presentation.core.OnItemClickListener
 import com.zinoview.tzrecipesapp.presentation.features.ra01.RecipesFragment
 
 class DetailRecipeFragment : BaseFragment(R.layout.detail_recipe_fragment) {
-
-    private val recipeViewModel by lazy {
-        ((requireActivity() as MainActivity).application as RecipeApplication).recipeViewModel
-    }
 
     private var detailRecipeBundle:BundleRecipe = BundleRecipe.Empty
 
